@@ -6,6 +6,7 @@ from fabric.api import *
 
 env.user = 'vagrant'
 env.hosts = ['127.0.0.1:2222']
+# from `vagrant ssh-config`
 env.key_filename = './.vagrant/machines/default/virtualbox/private_key'
 
 
@@ -20,7 +21,7 @@ def create_workdir():
 
 def encrypt(glob, password, name='encrypted'):
     workdir, id = create_workdir()
-    local('cp {glob} {workdir}/decrypted'.format(
+    local('cp "{glob}" {workdir}/decrypted'.format(
         glob=glob, workdir=workdir))
     run('''\
     pkzipc -add -passphrase="{password}" \
@@ -34,12 +35,12 @@ def encrypt(glob, password, name='encrypted'):
 def decrypt(filename, password):
     '''Uses pkware to decrypt `filename` into a unique directory'''
     workdir, id = create_workdir()
-    local('cp {filename} {workdir}/encrypted'.format(
+    local('cp "{filename}" {workdir}/encrypted'.format(
         filename=filename, workdir=workdir))
     basename = os.path.basename(filename)
     run('''\
     pkzipc -extract -passphrase="{password}" \
-      /vagrant/tmp/{id}/encrypted/{basename} \
+      /vagrant/tmp/{id}/encrypted/* \
       /vagrant/tmp/{id}/decrypted
     '''.format(password=password, id=id, basename=basename))
     print 'Decrypted into {workdir}/decrypted'.format(workdir=workdir)
