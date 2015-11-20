@@ -2,3 +2,4 @@
 env
 tmp
 *.pyc
+pkware-*.rpm
