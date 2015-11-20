@@ -13,8 +13,7 @@ def create_workdir():
     vagrantdir = os.path.dirname(__file__)
     id = uuid.uuid1()
     workdir = '{vagrantdir}/tmp/{id}'.format(vagrantdir=vagrantdir, id=id)
-    local('mkdir {workdir}'.format(workdir=workdir))
-    local('mkdir {workdir}/encrypted'.format(workdir=workdir))
+    local('mkdir -p {workdir}/encrypted'.format(workdir=workdir))
     local('mkdir {workdir}/decrypted'.format(workdir=workdir))
     return workdir, id
 
