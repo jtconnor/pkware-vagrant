@@ -13,7 +13,7 @@ env.key_filename = './.vagrant/machines/default/virtualbox/private_key'
 def create_workdir():
     vagrantdir = os.path.dirname(__file__)
     id = uuid.uuid1()
-    workdir = '{vagrantdir}/tmp/{id}'.format(vagrantdir=vagrantdir, id=id)
+    workdir = '{vagrantdir}/work/{id}'.format(vagrantdir=vagrantdir, id=id)
     local('mkdir -p {workdir}/encrypted'.format(workdir=workdir))
     local('mkdir {workdir}/decrypted'.format(workdir=workdir))
     return workdir, id
@@ -25,8 +25,8 @@ def encrypt(glob, password, name='encrypted'):
         glob=glob, workdir=workdir))
     run('''\
     pkzipc -add -passphrase="{password}" \
-      /vagrant/tmp/{id}/encrypted/{name}.zip \
-      /vagrant/tmp/{id}/decrypted/*
+      /vagrant/work/{id}/encrypted/{name}.zip \
+      /vagrant/work/{id}/decrypted/*
     '''.format(password=password, id=id, name=name))
     print 'Encrypted to {workdir}/encrypted/{name}.zip'.format(
         workdir=workdir, name=name)
@@ -40,7 +40,7 @@ def decrypt(filename, password):
     basename = os.path.basename(filename)
     run('''\
     pkzipc -extract -passphrase="{password}" \
-      /vagrant/tmp/{id}/encrypted/* \
-      /vagrant/tmp/{id}/decrypted
+      /vagrant/work/{id}/encrypted/* \
+      /vagrant/work/{id}/decrypted
     '''.format(password=password, id=id, basename=basename))
     print 'Decrypted into {workdir}/decrypted'.format(workdir=workdir)

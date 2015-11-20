@@ -1,5 +1,5 @@
 .vagrant
 env
-tmp
+work
 *.pyc
 pkware-*.rpm
