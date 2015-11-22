@@ -1,6 +1,6 @@
 #!/usr/bin/env python2.7
+import datetime
 import os.path
-import uuid
 
 from fabric.api import *
 
@@ -12,7 +12,7 @@ env.key_filename = './.vagrant/machines/default/virtualbox/private_key'
 
 def create_workdir():
     vagrantdir = os.path.dirname(__file__)
-    id = uuid.uuid1()
+    id = datetime.datetime.now().isoformat()
     workdir = '{vagrantdir}/work/{id}'.format(vagrantdir=vagrantdir, id=id)
     local('mkdir -p {workdir}/encrypted'.format(workdir=workdir))
     local('mkdir {workdir}/decrypted'.format(workdir=workdir))
