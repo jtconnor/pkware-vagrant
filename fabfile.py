@@ -19,7 +19,7 @@ def create_workdir():
     return workdir, id
 
 
-def encrypt(glob, password, name='encrypted'):
+def encrypt(glob, password, name='encrypted.zip'):
     workdir, id = create_workdir()
     local('cp "{glob}" {workdir}/decrypted'.format(
         glob=glob, workdir=workdir))
@@ -28,7 +28,7 @@ def encrypt(glob, password, name='encrypted'):
       /vagrant/work/{id}/encrypted/{name}.zip \
       /vagrant/work/{id}/decrypted/*
     '''.format(password=password, id=id, name=name))
-    print 'Encrypted to {workdir}/encrypted/{name}.zip'.format(
+    print 'Encrypted to {workdir}/encrypted/{name}'.format(
         workdir=workdir, name=name)
 
 
