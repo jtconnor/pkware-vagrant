@@ -8,4 +8,6 @@ set -eu -o pipefail
 
 echo "Installing PKWARE SecureZIP..."
 sudo rpm -ivh /vagrant/pkware-*.rpm
+# Accept pkzipc license
+yes | pkzipc || true
 echo "done."
