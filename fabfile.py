@@ -25,7 +25,7 @@ def encrypt(glob, password, name='encrypted.zip'):
         glob=glob, workdir=workdir))
     run('''\
     pkzipc -add -passphrase="{password}" \
-      /vagrant/work/{id}/encrypted/{name}.zip \
+      /vagrant/work/{id}/encrypted/{name} \
       /vagrant/work/{id}/decrypted/*
     '''.format(password=password, id=id, name=name))
     print 'Encrypted to {workdir}/encrypted/{name}'.format(
