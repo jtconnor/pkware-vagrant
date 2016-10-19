@@ -10,17 +10,17 @@ $ pip install -r ./requirements.txt
 
 Init vagrant
 ```
-$ cp <path to pkware rpm> ./  # `vagrant up` will install the pkware rpm
-$ vagrant up
+$ cp <path to pkware rpm> ./  # Download PKWare rpm from their website
+$ vagrant up  # Installs the pkware rpm
 $ vagrant ssh
 ```
 
-Encrypt a file
+Encrypt a file or directory
 ```
-$ fab encrypt:<glob-pattern>,<password>
+$ fab encrypt:<file-or-directory>,<password>
 ```
 
 Decrypt a file
 ```
-$ fab decrypt:<filename>,<password>
+$ fab decrypt:<file>,<password>
 ```
