@@ -10,7 +10,7 @@ $ pip install -r ./requirements.txt
 
 Init vagrant
 ```
-$ cp <path to pkware rpm> ./  # Download PKWare rpm from their website
+$ cp <path to pkware rpm> ./  # Download PKWARE rpm from their website
 $ vagrant up  # Installs the pkware rpm
 $ vagrant ssh
 ```
