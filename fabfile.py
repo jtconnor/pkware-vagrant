@@ -20,7 +20,7 @@ fab.env.key_filename = ssh_config['IdentityFile']
 
 
 def _create_tmpdirs():
-    tmpdir = '/tmp/pkware-vagrant'
+    tmpdir = '~/pkware-vagrant'
     fab.run('rm -rf {}'.format(tmpdir))
     encrypted_dir = tmpdir + '/e'
     fab.run('mkdir -p {}'.format(encrypted_dir))
@@ -75,7 +75,7 @@ def decrypt(filename, password, output_dir=None):
         output_dir = os.path.join(
             dirname,
             '{}-decrypted'.format(basename))
-        fab.local('mkdir {}'.format(output_dir))
+        fab.local('mkdir \'{}\''.format(output_dir))
 
     fab.get(decrypted_dir + '/*', output_dir)
     print 'Decrypted to {}'.format(output_dir)
