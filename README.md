@@ -12,7 +12,6 @@ Init vagrant
 ```
 $ cp <path to pkware rpm> ./  # Download PKWARE rpm from their website
 $ vagrant up  # Installs the pkware rpm
-$ vagrant ssh
 ```
 
 Encrypt a file or directory
